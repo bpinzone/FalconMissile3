@@ -5,7 +5,7 @@ using UnityEngine.Assertions;
 
 public class PlayerIdentity : MonoBehaviour {
 
-    public void Configure(AControlDevice _player_control_device, int _team, Color _color){
+    public void Configure(int _team, AControlDevice _player_control_device, Color _color){
         id = num_players++;
         team = _team;
         player_control_device = _player_control_device;
