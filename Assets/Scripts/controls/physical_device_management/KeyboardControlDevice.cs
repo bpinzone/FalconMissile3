@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Assertions;
 
 public class KeyboardControlDevice : AControlDevice {
@@ -21,7 +22,7 @@ public class KeyboardControlDevice : AControlDevice {
     }
 
     public override bool StartPressed(){
-        return Input.GetKeyDown(KeyCode.Return);
+        return Keyboard.current.enterKey.isPressed;
     }
 
     private KeyboardControlDevice(){

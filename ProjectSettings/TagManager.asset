@@ -13,10 +13,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - ShipPhysics
+  - ShipVulnerability
+  - Projectiles
+  - Walls
   - 
   - 
   - 

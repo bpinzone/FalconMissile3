@@ -3,25 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
+// A persistent identify and control method for a player.
+
+// Workflow for creating this:
+// Listening to Device Bank for a controller. When you get one, create and configure one of these.
 public class PlayerIdentity : MonoBehaviour {
 
-    public void Configure(int _team, AControlDevice _player_control_device, Color _color){
+    public void Configure(int _team, AControlDevice _control_device, Color _color){
         id = num_players++;
         team = _team;
-        player_control_device = _player_control_device;
-        player_ship_controller = player_control_device.GenerateAShipController();
+        control_device = _control_device;
         color = _color;
+        AssertConfigured();
+        DontDestroyOnLoad(gameObject);
     }
 
     public int GetTeam(){
+        AssertConfigured();
         return team;
     }
 
-    public AShipController GetAShipController(){
-        return player_ship_controller;
+    public AControlDevice GetControlDevice(){
+        AssertConfigured();
+        return control_device;
     }
 
-    private static int num_players = 0;
+    private void AssertConfigured(){
+        Assert.IsNotNull(control_device);
+    }
+
+    private static int num_players;
 
     [SerializeField]
     private int id;
@@ -29,8 +40,7 @@ public class PlayerIdentity : MonoBehaviour {
     [SerializeField]
     private int team;
 
-    private AControlDevice player_control_device;
-    private AShipController player_ship_controller;
+    private AControlDevice control_device;
 
     private Color color;
 }
