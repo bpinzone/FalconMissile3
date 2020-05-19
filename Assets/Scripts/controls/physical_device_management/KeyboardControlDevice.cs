@@ -17,7 +17,7 @@ public class KeyboardControlDevice : AControlDevice {
 
     public static KeyboardControlDevice instance = new KeyboardControlDevice();
 
-    public override AShipController GenerateAShipController() {
+    public override AShipController GetAShipController() {
         return KeyboardShipController.FULL_KEYBOARD;
     }
 

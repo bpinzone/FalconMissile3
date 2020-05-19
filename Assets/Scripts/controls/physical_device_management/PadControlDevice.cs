@@ -8,10 +8,11 @@ public class PadControlDevice : AControlDevice {
 
     public PadControlDevice(Gamepad _pad) {
         pad = _pad;
+        controller = new PadShipController(pad);
     }
 
-    public override AShipController GenerateAShipController() {
-        return new PadShipController(pad);
+    public override AShipController GetAShipController() {
+        return controller;
     }
 
     public override bool StartPressed(){
@@ -19,4 +20,5 @@ public class PadControlDevice : AControlDevice {
     }
 
     private Gamepad pad;
+    private PadShipController controller;
 }

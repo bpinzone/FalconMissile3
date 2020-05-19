@@ -37,7 +37,7 @@ public class Item {
         int imm = mounting? 1 : -1;
         stats.sublight_drive.thrust.start += 100 * imm;
         stats.sublight_drive.ab_thrust.start += 200 * imm;
-        stats.sublight_drive.rotation.start += 200 * imm;
+        stats.sublight_drive.rotation.start += 500 * imm;
         stats.sublight_drive.speed.start += 14 * imm;
         stats.sublight_drive.ab_speed.start += 20 * imm;
         stats.sublight_drive.ab_cost.start += 400 * imm;

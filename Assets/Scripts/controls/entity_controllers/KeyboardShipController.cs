@@ -18,7 +18,6 @@ public class RawAxis {
             if(pos_key.wasPressedThisFrame){
                 return 1;
             }
-            Assert.IsTrue(neg_key.wasPressedThisFrame);
             return -1;
         }
         if(pos_key.isPressed){

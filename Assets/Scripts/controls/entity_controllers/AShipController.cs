@@ -14,6 +14,9 @@ public abstract class AShipController {
     public delegate void OnThrustDirChange(int dir);
     public OnThrustDirChange on_thrust_dir_change;
 
+    public delegate void OnRotDirChange(int dir);
+    public OnRotDirChange on_rot_dir_change;
+
     // === Ship Movement ===
     // 1 forward. 0 none; -1 backward;
     public abstract int GetThrustDir();
@@ -26,14 +29,15 @@ public abstract class AShipController {
     public abstract bool BombButtonHeld();
 
     // === Event checking ===
-    public void CheckEventsFixedUpdate(){
+    public void CheckControlEventsFixedUpdate(){
         ProcessABEvents();
         ProcessThrustDirEvents();
+        ProcessRotDirEvents();
     }
 
     // === Event Processing ===
     // AB
-    private bool ab_on_last_frame = false;
+    private bool ab_on_last_frame;
     private void ProcessABEvents(){
         // Status didn't change or nobody cares
         if(ab_on_last_frame == ABOn() || on_ab_change == null){
@@ -43,12 +47,21 @@ public abstract class AShipController {
         ab_on_last_frame = ABOn();
     }
     // Thrust Dir
-    private int thrust_dir_last_frame = 0;
+    private int thrust_dir_last_frame;
     private void ProcessThrustDirEvents(){
         if(thrust_dir_last_frame == GetThrustDir() || on_thrust_dir_change == null){
             return;
         }
         on_thrust_dir_change(GetThrustDir());
         thrust_dir_last_frame = GetThrustDir();
+    }
+    // Rot Dir
+    private int rot_dir_last_frame;
+    private void ProcessRotDirEvents(){
+        if(rot_dir_last_frame == GetRotDir() || on_rot_dir_change == null){
+            return;
+        }
+        on_rot_dir_change(GetRotDir());
+        rot_dir_last_frame = GetRotDir();
     }
 }

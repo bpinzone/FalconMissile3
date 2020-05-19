@@ -25,13 +25,19 @@ public class PlayerSpawner : MonoBehaviour {
 
     public void CreatePlayer(AControlDevice new_player_device){
 
-        GameObject new_player = Instantiate(player_prefab);
+        GameObject new_player = Instantiate(player_prefab, Vector3.zero, Quaternion.identity, null);
         PlayerIdentity identity = new_player.GetComponent<PlayerIdentity>();
         identity.Configure(0, new_player_device, Color.blue);
 
-        GameObject new_ship = Instantiate(ship_prefab);
-        new_ship.GetComponent<ShipCore>().BoardPlayer(identity);
-        new_ship.transform.parent = new_player.transform;
+        GameObject new_ship = Instantiate(
+            ship_prefab, Vector3.zero, Quaternion.identity, new_player.transform
+        );
+
+        ShipCore core = new_ship.GetComponent<ShipCore>();
+        core.BoardPlayer(identity);  // enabled systems.
+
+        // TODO: put this somewhere else.
+        core.Mount(Item.ion_drive);
     }
 
 }

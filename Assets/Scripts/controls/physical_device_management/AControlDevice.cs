@@ -6,6 +6,7 @@ using UnityEngine;
 // Responsible for generating abstract controllers for specific entities. (Ship, menu)
 public abstract class AControlDevice {
 
-    public abstract AShipController GenerateAShipController();
+    // Must return the same AShipController for the same AControlDevice instance.
+    public abstract AShipController GetAShipController();
     public abstract bool StartPressed();
 }
