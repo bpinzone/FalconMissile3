@@ -70,6 +70,7 @@ public class ControlDeviceBank : MonoBehaviour {
         // Someone must be listening!
         Assert.IsNotNull(on_new_controller);
 
+        // could we give 2 devices to one entity by mistake?
         HashSet<AControlDevice> devices_to_give = new HashSet<AControlDevice>();
         foreach(AControlDevice avail_device in available_devices){
             if(avail_device.StartPressed()){
